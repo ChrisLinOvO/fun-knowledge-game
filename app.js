@@ -223,6 +223,8 @@ io.on("connection",function(socket){//---socket io監聽 connection  當client/U
         io.emit("checkdatas",Players);
     });
     var setIn=setInterval(MatchPlayers,100);
+
+
     function MatchPlayers(){//--配對玩家        
         var has=[];//--PlayerWaits 非空物件的是哪幾個
         for(var i=0;i<PlayerWaits.length;i++){
@@ -233,7 +235,13 @@ io.on("connection",function(socket){//---socket io監聽 connection  當client/U
             //--第一筆 和第二筆 一起配對 --> 然後刪除 --> 再跑一次interval
             var aa=PlayerWaits[has[1]][0]+1;
             var bb=PlayerWaits[has[0]][0]+1;
-            var nbs=range(103,5);//103是題目數 若有更動須在此更改
+            var nbs=range(90,4);//是題目數 若有更動須在此更改
+          
+            var myArray = [90, 91, 92, 93];
+            var rand = Math.floor(Math.random()*myArray.length);
+            var rValue = myArray[rand];
+            nbs=[...nbs,rValue]
+            console.log("nbs",nbs)
             IsGameing.push([PlayerWaits[has[0]][1],PlayerWaits[has[1]][1]]);
             io.to(PlayerWaits[has[0]][1]).emit('GameStart',{ids:aa,longid:PlayerWaits[has[1]][1],nb:nbs});
             io.to(PlayerWaits[has[1]][1]).emit('GameStart',{ids:bb,longid:PlayerWaits[has[0]][1],nb:nbs});
