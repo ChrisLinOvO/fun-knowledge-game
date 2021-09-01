@@ -277,7 +277,7 @@ $(document).ready(function(){
             case "策略部":
               vlnb=3;
               break;
-            case "管/會部":
+            case "研發部":
               vlnb=4;
               break;
             case "設計部":
